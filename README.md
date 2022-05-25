@@ -119,6 +119,9 @@ If reached early stopping, the training will be stopped.
 
 ![tnr](https://user-images.githubusercontent.com/86812576/170208446-87d6cbc7-b5ba-4a22-b890-cacde903f9f6.png)
 
-In training, I limit the early stopping to 5, and after touching the early stopping the best model is 0.8225. can be seen that is not very overfit. The interesting thing is that the test is lower than the train, meaning that the test is better than the train, maybe because it does augmentation and also adds dropouts.
+In training, I limit the early stopping to 5, and after touching the early stopping the best model is **0.8225**. can be seen that is not very overfit. The interesting thing is that the test is lower than the train, meaning that the test is better than the train, maybe because it does augmentation and also adds dropouts.
 
 One important thing is why can test is better than train? In deep learning we will often meet where testing is better than training in accuracy or loss. the answer is because the sequence of doing the loop, first when train on feedforward, calculate loss, backprop, and update weight, train accuracy and cost accuracy are calculated during training and then averaged, but after updating the new weights then calculating the cost from the test means that the test will be a little smarter than the train. So as if test is better than train.
+
+# Predict
+For prediction, I just pull a batch of data as an example.
