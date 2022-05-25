@@ -50,6 +50,7 @@ let's check if it works well.
 feature shape is appropriate. With two classes, namely 'invasive' and 'noninvasive'.
 
 # Architecture and Config
+## Architecture
 In this project I use the architecture as below:
 
 ![arsitektur](https://user-images.githubusercontent.com/86812576/170066662-67b38b46-b407-4403-8daa-92b20a91ff9e.png)
@@ -66,4 +67,32 @@ After flattening enter it into the neural network. so there are 2 phases. The fi
 
 ![fully con](https://user-images.githubusercontent.com/86812576/170180802-e0b49edb-7b1e-4e39-9301-d80afc74670a.png)
 
-The second phase is after being flattened, enter it into a fully connected neural network. So there are always 2 phases on CNN, namely feature extractor and fully connected. Linear, you can directly enter the amount according to the features that have been flattened and then immediately become 2 classes, namely invasive and noninvasive. But it will be made gradually from 1024 to 256, then into 2 features, you can use softmax and the loss is NLL.
+The second phase is after being flattened, enter it into a fully connected neural network. So there are always 2 phases on CNN, namely feature extractor and fully connected. Linear, you can directly enter the amount according to the features that have been flattened and then immediately become 2 classes, namely invasive and noninvasive. But it will be made gradually from 1024 to 256, then into 2 features, you can use _logsoftmax_ and the loss is _NLL_.
+
+here is the custom wrapped code.
+
+![buia](https://user-images.githubusercontent.com/86812576/170181637-5ea209d5-262f-4997-aa4a-216509648250.png)
+
+The way the code above works is that it will first perform a feature extraction, then enter it into fully connected where there is dropout = 0.1, and activation = 'lsoftmax' as explained earlier.
+
+## Config
+On config will save only batch_size and crop_size. while the architecture is not saved, neither is the input channel as it changes frequently depending on the case.
+
+# Training Preparation -> MCOC
+![mcoc](https://user-images.githubusercontent.com/86812576/170183931-96bf4d90-bd01-4b40-97b8-d97d8869acd3.png)
+
+- Model
+
+Contains a built-in model that exists on an architecture called CustomCNN.
+
+- Criterion
+
+cause activation is logsoftmax then use NLLLoss()
+
+- Optimizer
+
+In the Optimizer, I use AdamW, namely Adaptive Momentum with Weight Decay, where there is a regulation to reduce overfit. With learning rate 0.001
+
+- Callback
+
+The callback will save every 50 epochs of progress, and will plot the cost error every 20 epochs, and will save it in a folder.
