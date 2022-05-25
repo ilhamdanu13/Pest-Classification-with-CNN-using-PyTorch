@@ -50,5 +50,20 @@ let's check if it works well.
 feature shape is appropriate. With two classes, namely 'invasive' and 'noninvasive'.
 
 # Architecture and Config
+In this project I use the architecture as below:
 
 ![arsitektur](https://user-images.githubusercontent.com/86812576/170066662-67b38b46-b407-4403-8daa-92b20a91ff9e.png)
+
+The input is 3 channels with 64x64 pixels. later this architecture will perform convolution-activation-pooling 4 times, and the activations used are ReLU (rectify linear unit) and Max Pooling.
+
+Convolution (3, 8) means that it uses 3 RGB channels and becomes 8 channels, which means that it uses 8 filters. The 8 channels in question are feature maps that are concatenated so that it looks like 8 channels. from 8 channels I use 16 filters, so it becomes 16 channels. to make it easier just imagine it's like a neural network, it's like a neuron but actually it's a filter. 
+
+In the Neural Network, the neurons in the architecture are getting less and less, in contrast to CNN, which is getting more and more complex. After reaching the end and doing 4 times pooling the image size is halved. every time you do Conv-ReLu-MaxPool the image size becomes smaller because of MaxPool, in the end there are only 16 features (4x4) and 64 channels, so the total feature is 1024 channels (64x4x4) which is lighter than ANN.
+
+![feature extr](https://user-images.githubusercontent.com/86812576/170180780-ffa92b55-a4e5-4741-a56a-d436e15b2444.png)
+
+After flattening enter it into the neural network. so there are 2 phases. The first is the feature extractor, because when there is an image, the features are extracted until they become flattened.
+
+![fully con](https://user-images.githubusercontent.com/86812576/170180802-e0b49edb-7b1e-4e39-9301-d80afc74670a.png)
+
+The second phase is after being flattened, enter it into a fully connected neural network. So there are always 2 phases on CNN, namely feature extractor and fully connected. Linear, you can directly enter the amount according to the features that have been flattened and then immediately become 2 classes, namely invasive and noninvasive. But it will be made gradually from 1024 to 256, then into 2 features, you can use softmax and the loss is NLL.
