@@ -96,3 +96,21 @@ In the Optimizer, I use AdamW, namely Adaptive Momentum with Weight Decay, where
 - Callback
 
 The callback will save every 50 epochs of progress, and will plot the cost error every 20 epochs, and will save it in a folder.
+
+### Callback
+Callback is something called repeatedly. Callback for common PyTorch Workflow:
+- Logging
+
+Automatically will plotting and logging.
+
+- Checkpoint
+
+To save epoch progress.
+
+- Runtime Plotting
+To monitor the loss in progress, and will plot the score.
+
+- Early Stopping
+
+For example, if the test cost has started to increase, it will stop and take the best cost.
+If reached early stopping, the training will be stopped.
