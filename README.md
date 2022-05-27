@@ -1,4 +1,19 @@
-# CNN
+# Convolutional Neural Network (CNN)
+
+![image](https://user-images.githubusercontent.com/86812576/170623148-d2073316-cabc-4e25-9e21-7fe627a3b108.png)
+
+### The Power of Combination in Neural Network -> Feature Extraction
+Remember how neural networks work? it's a linear combination. Combinations of combinations that can create features that are convoluted and can predict extraordinary things. We will utilize the same idea. For example, if there are features in the form of slanted lines, then the combination can produce eyes, nose, or mouth, or other facial structures, if all of them combined can produce faces, in neural networks it is called feature extraction/feature engineering.
+
+### Our main goal
+
+![image](https://user-images.githubusercontent.com/86812576/170623968-80392697-f5fc-4d0a-9742-3a7d8929c3f9.png)
+
+If that's the case, how can an image get its features?
+For example, drawing a house, then we want a technique that can find the edges (vertical). Instead we want to find a horizontal line in the image. Is there any such technique to extract those lines. That technology is a Filter (old technique) and can be used for edge detection, the hope is that if we can do edge detection we can find more complex features so that it can even detect faces, animals, etc.
+
+
+
 # Pest Image Classification with CNN using PyTorch
 The dataset discussed is image classification for pests, the name of the plant pest is hydrangea. We can get this data from kaggle.
 # Import Package
